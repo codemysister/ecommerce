@@ -24,7 +24,7 @@
                         <tr>
                             <th>Category</th>
                             <th>Sub Category Eng</th>
-                            <th>Sub-SubCategory Ind</th>
+                            <th>Sub-SubCategory Eng</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,8 +35,8 @@
                             <td>{{$sc['subcategory']['subcategory_name_en']}}</td>
                             <td>{{$sc->subsubcategory_name_en}}</td>
                             <td>
-                                <a href="{{route('subcategory.edit', $sc->id)}}" class="btn btn-primary">Edit</a>&nbsp;
-                                <a href="{{route('subcategory.delete',$sc->id )}}" class="btn btn-danger" id="delete">Delete</a>
+                                <a href="{{route('subsubcategory.edit', $sc->id)}}" class="btn btn-primary">Edit</a>&nbsp;
+                                <a href="{{route('subsubcategory.delete',$sc->id )}}" class="btn btn-danger" id="delete">Delete</a>
                             </td>
                         
                         </tr>
@@ -60,7 +60,7 @@
              <!-- /.box-header -->
              <div class="box-body">
                  <div class="table-responsive">
-                  <form method="POST" action="{{ route('subcategory.store') }}">
+                  <form method="POST" action="{{ route('subsubcategory.store') }}">
                     @csrf
             
                 <div class="form-group">

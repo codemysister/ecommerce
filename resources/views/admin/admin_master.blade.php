@@ -100,7 +100,7 @@
 
 
   @if(Session::get('message'))
-    var type = "{{Session::get('alert-type', 'info')}}";
+    var type = "{{Session::get('alert-type')}}";
     console.log(type)
     console.log(type);
     switch(type){
