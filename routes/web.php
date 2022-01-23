@@ -82,9 +82,11 @@ Route::prefix('category')->group(function () {
     Route::post('sub/sub/update', [SubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
     Route::get('sub/sub/delete/{id}', [SubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
     Route::get('/subcategory/ajax/{id}', [SubCategoryController::class, 'GetSubCategory']);
+    Route::get('/subsubcategory/ajax/{id}', [SubCategoryController::class, 'GetSubSubCategory']);
 });
 
 
 Route::prefix('product')->group(function () {
     Route::get('add', [ProductController::class, 'ProductAdd'])->name('product.add');
+    Route::post('store', [ProductController::class, 'ProductStore'])->name('product.store');
 });
