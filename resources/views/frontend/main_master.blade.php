@@ -5,10 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf_token" content="{{csrf_token()}}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>Flipmart premium HTML5 & CSS3 Template</title>
+<title>@yield('title')</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
@@ -61,6 +62,7 @@
 <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script> 
 <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
   @if(Session::get('message'))
@@ -83,6 +85,82 @@
             break;
     }
   @endif
+</script>
+
+
+{{-- Modal --}}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pname">Product Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <div class="row">
+                  <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                              <img src="..." class="card-img-top" id="pimage" alt="..." style="height: 200px; width: 200px">
+                             
+                        </div>
+                  </div>
+                  <div class="col-sm-4">
+                        <ul class="list-group">
+                              <li class="list-group-item">Product Price : <strong id="price" class="text-danger">$<span id="pprice"></span></strong>  <del id="oldprice">$</del></li>
+                              <li class="list-group-item">Product Code : <strong id="code"></strong></li>
+                              <li class="list-group-item">Category : <strong id="category"></strong></li>
+                              <li class="list-group-item">Brand : <strong id="brand"></strong></li>
+                              <li class="list-group-item">Stock : <strong id="stock"><span id="available" class="badge badge-pill badge-success" style="background-color:green; color:white"><span id="stockout" class="badge badge-pill badge-danger" style="background-color:red; color:white"></span></strong></li>
+                            </ul>
+                  </div>
+                  <div class="col-sm-4">
+                        <div class="form-group" id="colorForm">
+                              <label for="exampleFormControlSelect1">Choose Color</label>
+                              <select class="form-control" id="color">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                              </select>
+                            </div>
+                        <div class="form-group" id="sizeForm">
+                              <label for="exampleFormControlSelect1">Choose Size</label>
+                              <select class="form-control" id="size">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                              </select>
+                            </div>
+                        <div class="form-group">
+                              <label for="exampleFormControlSelect1">Quantity</label>
+                              <input type="number" name="qty" id="qty" class="form-control">
+                            </div>
+                            <input type="hidden" id="product_id">
+                            <button class="btn btn-primary cart-btn" onclick="addToCart()" type="button">Add to cart</button>
+                  </div>
+            </div>
+            
+      </div>
+
+    </div>
+  </div>
+</div>
+{{-- End Modal --}}
+
+
+
+<script>
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN' : $("meta[name='csrf_token']").attr('content')
+    }
+  })
 </script>
 </body>
 </html>

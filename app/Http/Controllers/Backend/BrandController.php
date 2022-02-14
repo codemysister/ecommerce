@@ -18,7 +18,6 @@ class BrandController extends Controller
 
     public function BrandStore(Request $request)
     {
-        dd($request);
         $request->validate([
             'brand_name_en' => 'required',
             'brand_name_id' => 'required',

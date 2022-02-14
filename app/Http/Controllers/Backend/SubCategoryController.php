@@ -145,6 +145,8 @@ class SubCategoryController extends Controller
         return view('admin.category.sub_subcategory_edit', compact('categories', 'subcategories', 'subsubcategory'));
     }
 
+
+
     public function SubSubCategoryUpdate(Request $request)
     {
 
